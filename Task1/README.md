@@ -63,11 +63,11 @@ This ensures all commands below assume `sum1ton.c` is in the current working dir
 
 **Initial mistake - wrong directory:**
 
-![Wrong directory initially](Screenshot%202026-06-02%20131029.png)
+![Wrong directory initially](resources/Screenshot%202026-06-02%20131029.png)
 
 **Fixed - correct sample programs directory:**
 
-![Moved to correct directory](Screenshot%202026-06-02%20131133.png)
+![Moved to correct directory](resources/Screenshot%202026-06-02%20131133.png)
 
 ---
 
@@ -81,7 +81,7 @@ gedit sum1ton.c
 
 This opens the text editor where you can view and verify the C program structure. Confirm the loop that computes the sum from 1 to n.
 
-![Opened sum1ton.c in editor](Screenshot%202026-06-02%20131934.png)
+![Opened sum1ton.c in editor](resources/Screenshot%202026-06-02%20131934.png)
 
 ---
 
@@ -97,7 +97,7 @@ int n = 5;
 
 After making the changes, save and close the file.
 
-![Edited n to 5 and verified](Screenshot%202026-06-02%20132449.png)
+![Edited n to 5 and verified](resources/Screenshot%202026-06-02%20132449.png)
 
 **This produces the O0 output** - the functional reference output from the x86 GCC compiler. This is our baseline for verifying that the RISC-V implementation produces the same result.
 
@@ -122,7 +122,7 @@ riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
 
 **Result:** You now have `sum1ton.o` which is an ELF binary containing RISC-V machine code instead of native x86 instructions.
 
-![Compiled with -O1 optimization](Screenshot%202026-06-02%20133027.png)
+![Compiled with -O1 optimization](resources/Screenshot%202026-06-02%20133027.png)
 
 ---
 
@@ -141,7 +141,7 @@ riscv64-unknown-elf-objdump -d sum1ton.o
 
 **Result:** You can now see the generated RISC-V assembly instructions for each function in the program. This reveals exactly how the C compiler translated your high-level code into machine instructions.
 
-![Objdump disassembly output](Screenshot%202026-06-02%20155126.png)
+![Objdump disassembly output](resources/Screenshot%202026-06-02%20155126.png)
 
 ---
 
@@ -166,9 +166,9 @@ Inside `less`, you can search for specific functions:
 
 **Step-by-step search:**
 
-![Viewing disassembly in less](Screenshot%202026-06-02%20155217.png)
+![Viewing disassembly in less](resources/Screenshot%202026-06-02%20155217.png)
 
-![Searching for main in less](Screenshot%202026-06-02%20155258.png)
+![Searching for main in less](resources/Screenshot%202026-06-02%20155258.png)
 
 ---
 
@@ -197,7 +197,7 @@ riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o sum1ton.o sum1ton.c
 
 This reduction demonstrates how compiler optimizations directly impact code size and execution efficiency. More aggressive means deeper and complex set of transformations applied to the code or the code that occupies less memory.
 
-![Comparison - Ofast main instructions](Screenshot%202026-06-02%20161035.png)
+![Comparison - Ofast main instructions](resources/Screenshot%202026-06-02%20161035.png)
 
 You can re-run the `objdump` and `less` commands to verify the reduced instruction count in `main` with `-Ofast`.
 
@@ -221,21 +221,21 @@ This methodology ensures that before designing complex hardware (RTL, physical l
 
 ### SoC Design Flow Diagram
 
-![VLSI SoC Design Architecture Overview](Pasted%20image%2020260602183907.png)
+![VLSI SoC Design Architecture Overview](resources/Pasted%20image%2020260602183907.png)
 
 ### O0 → O1 → O2 → O3 → O4 Verification Flow
 
 The complete design flow involves multiple verification stages, each with output that must match the previous stage:
 
-![O0-O1 Test Application to C Model Verification](Pasted%20image%2020260602192506.png)
+![O0-O1 Test Application to C Model Verification](resources/Pasted%20image%2020260602192506.png)
 
-![Hardware RTL Design Stage (O2)](Pasted%20image%2020260602200411.png)
+![Hardware RTL Design Stage (O2)](resources/Pasted%20image%2020260602200411.png)
 
-![Analog IP Synthesis and Power/Performance/Area Analysis](Pasted%20image%2020260602200915.png)
+![Analog IP Synthesis and Power/Performance/Area Analysis](resources/Pasted%20image%2020260602200915.png)
 
-![Physical Design and GDSII Generation (O3)](Pasted%20image%2020260602201420.png)
+![Physical Design and GDSII Generation (O3)](resources/Pasted%20image%2020260602201420.png)
 
-![Final PCB and Tape-out Stage (O4)](Pasted%20image%2020260602201620.png)
+![Final PCB and Tape-out Stage (O4)](resources/Pasted%20image%2020260602201620.png)
 
 ---
 
