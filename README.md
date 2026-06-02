@@ -1,4 +1,4 @@
-# RISC-V FPGA IP Development – VSD Internship
+# RISC-V FPGA IP Design – VSD Internship
 
 
 **Submitted by:** Atharv Priyansh  
