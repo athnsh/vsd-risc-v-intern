@@ -29,14 +29,10 @@ This internship project focuses on **RISC-V processor design and verification** 
 ### [Task 1: RISC-V Compilation](vsd-intern/task1/README.md)
 Understanding C-to-RISC-V compilation pipeline with different optimization levels (-O1 vs -Ofast). Demonstrates how the same C program generates different assembly depending on compiler flags.
 
-**Key Skills:** Cross-compilation, Disassembly, Compiler Optimization, ISA Analysis
-
 ### [Task 2: Spike Simulation & Debugging](vsd-intern/task2/README.md)
 Executing and debugging RISC-V binaries using the Spike ISA simulator. Includes two programs:
 - **sum1ton.c**: Mathematical computation with optimization comparison
 - **[LFSR.c](vsd-intern/task2/LFSR.c)**: 32-bit pseudo-random generator (hardware-oriented algorithm)
-
-**Key Skills:** RISC-V Simulation, Register Inspection, Instruction Encoding, Functional Verification, Hardware Algorithm Implementation
 
 ---
 
