@@ -256,7 +256,68 @@ This foundation ensures that any subsequent hardware implementation (RTL, physic
 
 ---
 
-## Further Learning: Application Areas
+# LFSR Program - 32-bit Pseudo-Random Generator
 
+My program ([LFSR.c](LFSR.c)) implements a Linear Feedback Shift Register for pseudo-random sequence generation with:
+- **Seed:** `0x00007D61` (initial state - must never be 0)
+- **Polynomial:** `0xB4BCD35C` (feedback taps)
+- **Algorithm:** Extract LSB → Shift right → XOR with polynomial if LSB=1 → Repeat
 
+Compile with RISC-V GCC:
 
+```bash
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o LFSR.o LFSR.c
+```
+
+### Running LFSR with Spike
+
+Execute the LFSR program:
+
+```bash
+spike pk LFSR.o
+```
+
+**Output:**
+```
+Step  Output
+----  ----------
+1     0x00007D61
+2     0xB4BCEDEC
+3     0x5A5E76F6
+...
+16    0xED605A44
+```
+
+The LFSR generates a deterministic pseudo-random sequence. Output with **RISC-V GCC** is **identical** to native GCC, confirming correct compilation and execution.
+
+![LFSR execution with Spike](task2-resources/Pasted%20image%2020260604191746.png)
+
+### LFSR Instruction Count Analysis
+
+**-Ofast Compilation:**
+
+```bash
+riscv64-unknown-elf-objdump -d LFSR.o | less
+```
+
+Result: **29 instructions in main function**
+
+![Objdump for LFSR -Ofast](task2-resources/Pasted%20image%2020260604192203.png)
+
+**-O1 Compilation:**
+
+```bash
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o LFSR.o LFSR.c
+riscv64-unknown-elf-objdump -d LFSR.o | less
+```
+
+Result: **31 instructions in main function**
+
+![Objdump for LFSR -O1](task2-resources/Pasted%20image%2020260604192606.png)
+
+**Comparison Summary:**
+- **-Ofast**: 29 instructions (more aggressive optimization)
+- **-O1**: 31 instructions (fewer optimizations)
+- **Reduction**: 2 instructions (~6.5% code size reduction with -Ofast)
+
+The maximum possible sequence length is **2^32 - 1** states before the sequence repeats (XOR-based feedback ensures this period).

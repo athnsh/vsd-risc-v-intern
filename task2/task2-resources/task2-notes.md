@@ -49,4 +49,36 @@ register source and register destination
 
 in the -O1 optimization Load immediate is used `li` more commonly in O1
 ![[Pasted image 20260604185125.png]]
- 
+
+for the sample c program i designed a pseudo random 32 bit sequence generator using LFSR 
+with a seed value of 0x00007D61 ie the initial value which can be anything except 0
+
+the c program is in [[LFSR.c]]
+
+and the feedback polynomial as 0xB4BCD35C
+Initialize LFSR with seed  
+  
+LOOP:  
+Extract LSB  
+Shift register right  
+If LSB == 1  
+XOR with polynomial  
+Print state  
+END LOOP
+
+possible states are 2^32 -1 
+therefore this is the period after which values will repeat since its xor
+
+![[Pasted image 20260604191746.png]]
+running the output with both RISCV and GCC works the same 
+Output is **identical** to native GCC  which confirms that the RISC-V binary works correctly on SPIKE.
+
+![[Pasted image 20260604192203.png]]
+objdump
+so calculating the total instructions in main. there are 29 instructions in main using Ofast optimization.
+so now we check for comparison in O1
+![[Pasted image 20260604192606.png]]
+main in O1.
+so in here there are 31 instructions in main using O1 optimization.
+
+after which we can do step by step execution using the spike debug mode.
