@@ -223,13 +223,13 @@ This methodology ensures that before designing complex hardware (RTL, physical l
 
 The complete design flow involves multiple verification stages, each with output that must match the previous stage:
 
-![Hardware RTL Design Stage (O2)](task1-resources/Screenshot%202026-06-02%20200408.png)
+![Hardware RTL Design Stage (O2)](task1-resources/Pasted%20image%2020260602192506.png)
 
-![Analog IP Synthesis and Power/Performance/Area Analysis](task1-resources/Screenshot%202026-06-02%20200910.png)
+![Analog IP Synthesis and Power/Performance/Area Analysis](task1-resources/Pasted%20image%2020260602200411.png)
 
-![Physical Design and GDSII Generation (O3)](task1-resources/Screenshot%202026-06-02%20201414.png)
+![Physical Design and GDSII Generation (O3)](task1-resources/Pasted%20image%2020260602200915.png)
 
-![Final PCB and Tape-out Stage (O4)](task1-resources/Screenshot%202026-06-02%20201619.png)
+![Final PCB and Tape-out Stage (O4)](task1-resources/Pasted%20image%2020260602201420.png)
 
 ---
 
