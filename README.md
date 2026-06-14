@@ -34,6 +34,9 @@ Executing and debugging RISC-V binaries using the Spike ISA simulator. Includes 
 - **sum1ton.c**: Mathematical computation with optimization comparison
 - **[LFSR.c](vsd-intern/task2/LFSR.c)**: 32-bit pseudo-random generator (hardware-oriented algorithm)
 
+### [Task 3: Environment Setup & RISC-V Reference Bring-Up](vsd-intern/task3/README.md)
+Building and validating the complete RISC-V software-to-FPGA workflow, validating software execution using Spike, and preparing the FPGA build flow.
+
 ---
 
 ## Repository Structure
@@ -50,6 +53,10 @@ vsd-intern/
 │   ├── LFSR.c (pseudo-random generator)
 │   └── task2-resources/
 │       └── (screenshots and notes)
+├── task3/
+│   ├── README.md (Environment setup and FPGA bring-up guide)
+│   └── task3-resources/
+│       └── (Docker file, screenshots and notes)
 └── resources/ (Reference materials currently in gitignore)
 ```
 
@@ -59,5 +66,6 @@ vsd-intern/
 
 - [Task 1 README](vsd-intern/task1/README.md) – Full compilation guide with screenshots
 - [Task 2 README](vsd-intern/task2/README.md) – Spike debugging workflow and LFSR analysis
+- [Task 3 README](vsd-intern/task3/README.md) – Environment setup and FPGA bring-up guide
 - [LFSR.c Source](vsd-intern/task2/LFSR.c) – 32-bit pseudo-random generator implementation
-- [Task 1 Notes](vsd-intern/task1/task1-resources/task1-notes.md) [Task 2 Notes](vsd-intern/task2/task2-resources/task2-notes.md) – Raw debugging notes and observations
+- [Task 1 Notes](vsd-intern/task1/task1-resources/task1-notes.md) [Task 2 Notes](vsd-intern/task2/task2-resources/task2-notes.md) [Task 3 Notes](vsd-intern/task3/task3-resources/task3-notes.md) – Raw debugging notes and observations
