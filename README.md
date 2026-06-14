@@ -26,15 +26,15 @@ This internship project focuses on **RISC-V processor design and verification** 
 
 ## Tasks Overview
 
-### [Task 1: RISC-V Compilation](vsd-intern/task1/README.md)
+### [Task 1: RISC-V Compilation](Task1/README.md)
 Understanding C-to-RISC-V compilation pipeline with different optimization levels (-O1 vs -Ofast). Demonstrates how the same C program generates different assembly depending on compiler flags.
 
-### [Task 2: Spike Simulation & Debugging](vsd-intern/task2/README.md)
+### [Task 2: Spike Simulation & Debugging](task2/README.md)
 Executing and debugging RISC-V binaries using the Spike ISA simulator. Includes two programs:
 - **sum1ton.c**: Mathematical computation with optimization comparison
-- **[LFSR.c](vsd-intern/task2/LFSR.c)**: 32-bit pseudo-random generator (hardware-oriented algorithm)
+- **[LFSR.c](task2/LFSR.c)**: 32-bit pseudo-random generator (hardware-oriented algorithm)
 
-### [Task 3: Environment Setup & RISC-V Reference Bring-Up](vsd-intern/task3/README.md)
+### [Task 3: Environment Setup & RISC-V Reference Bring-Up](task3/README.md)
 Building and validating the complete RISC-V software-to-FPGA workflow, validating software execution using Spike, and preparing the FPGA build flow.
 
 ---
@@ -64,8 +64,8 @@ vsd-intern/
 
 ## Quick Links
 
-- [Task 1 README](vsd-intern/task1/README.md) – Full compilation guide with screenshots
-- [Task 2 README](vsd-intern/task2/README.md) – Spike debugging workflow and LFSR analysis
-- [Task 3 README](vsd-intern/task3/README.md) – Environment setup and FPGA bring-up guide
-- [LFSR.c Source](vsd-intern/task2/LFSR.c) – 32-bit pseudo-random generator implementation
-- [Task 1 Notes](vsd-intern/task1/task1-resources/task1-notes.md) [Task 2 Notes](vsd-intern/task2/task2-resources/task2-notes.md) [Task 3 Notes](vsd-intern/task3/task3-resources/task3-notes.md) – Raw debugging notes and observations
+- [Task 1 README](Task1/README.md) – Full compilation guide with screenshots
+- [Task 2 README](task2/README.md) – Spike debugging workflow and LFSR analysis
+- [Task 3 README](task3/README.md) – Environment setup and FPGA bring-up guide
+- [LFSR.c Source](task2/LFSR.c) – 32-bit pseudo-random generator implementation
+- [Task 1 Notes](Task1/task1-resources/task1-notes.md) [Task 2 Notes](task2/task2-resources/task2-notes.md) [Task 3 Notes](task3/task3-resources/task3-notes.md) – Raw debugging notes and observations
