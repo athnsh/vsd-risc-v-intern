@@ -24,25 +24,29 @@ At this stage, Steps 1 and 2 are already complete (from Tasks 1 and 2). Task 3 b
 ## Understanding Check
 
 **Ques 1:** Where is the RISC-V program located in the vsd-riscv2 repository? 
-***Answer:*** The RISC-V application program is located in `vsd-riscv2/vsdfpga_labs/basicRISCV/Firmware/`. This directory contains the C source files, startup code, linker scripts, and generated memory initialization files used by the RISC-V processor.
+
+***Answer:** The RISC-V application program is located in `vsd-riscv2/vsdfpga_labs/basicRISCV/Firmware/`. This directory contains the C source files, startup code, linker scripts, and generated memory initialization files used by the RISC-V processor.*
 
 
 **Ques 2:** How is the program compiled and loaded into memory?  
-***Answer:*** The source code is cross-compiled using `riscv64-unknown-elf-gcc` into a RISC-V ELF executable. The program is then executed using Spike along with the Proxy Kernel (`pk`), which loads the ELF into simulated memory, initializes the processor state, and handles system calls on behalf of the simulated RISC-V core. 
 
-The compiled ELF is converted into a memory initialization file (e.g., `.hex`/`.bram.hex`) that is loaded into FPGA Block RAM (BRAM). After configuration and reset, the RISC-V core fetches instructions directly from BRAM and begins execution.
+***Answer:** The source code is cross-compiled using `riscv64-unknown-elf-gcc` into a RISC-V ELF executable. The program is then executed using Spike along with the Proxy Kernel (`pk`), which loads the ELF into simulated memory, initializes the processor state, and handles system calls on behalf of the simulated RISC-V core.* 
+
+*The compiled ELF is converted into a memory initialization file (e.g., `.hex`/`.bram.hex`) that is loaded into FPGA Block RAM (BRAM). After configuration and reset, the RISC-V core fetches instructions directly from BRAM and begins execution.*
 
 
 **Ques 3:** How does the RISC-V core access memory and memory-mapped IO?   
-***Answer:*** The RISC-V core accesses both memory and peripherals through its address space using standard load and store instructions. 
 
-RAM and ROM occupy specific address ranges. This is similar to how peripherals such as GPIO, USART, TIM, or ADC are accessed on an STM32 through fixed register addresses. Reading or writing to those addresses causes transactions to the corresponding hardware blocks. This memory-mapped IO approach allows peripherals to be controlled like ordinary memory locations. When we program.
+***Answer:** The RISC-V core accesses both memory and peripherals through its address space using standard load and store instructions.* 
+
+*RAM and ROM occupy specific address ranges. This is similar to how peripherals such as GPIO, USART, TIM, or ADC are accessed on an STM32 through fixed register addresses. Reading or writing to those addresses causes transactions to the corresponding hardware blocks. This memory-mapped IO approach allows peripherals to be controlled like ordinary memory locations. When we program.*
 
 
 **Ques 4:** Where would a new FPGA IP block logically integrate in this system?
-***Answer:***  A new FPGA IP block would be added as a memory-mapped peripheral connected to the RISC-V system.
 
-It would be assigned a specific address range, similar to peripherals on an STM32. The RISC-V core can then read from and write to the IP block's registers using normal load and store instructions, allowing software to configure and communicate with the hardware.
+***Answer:**  A new FPGA IP block would be added as a memory-mapped peripheral connected to the RISC-V system.*
+
+*It would be assigned a specific address range, similar to peripherals on an STM32. The RISC-V core can then read from and write to the IP block's registers using normal load and store instructions, allowing software to configure and communicate with the hardware.*
 
 ---
 
@@ -93,7 +97,7 @@ sudo apt-get install -y git vim autoconf automake autotools-dev curl \
 
 **Issue encountered:** Installing the FPGA tools (yosys, nextpnr-ice40) I encountered package resolution errors. The `icestorm` package is unavailable; so i used `fpga-icestorm` as alternative.
 
-![[Pasted image 20260613182416.png]]
+![](Pasted%20image%2020260613182416.png)
 
 ```bash
 # FPGA toolchain (Yosys/NextPNR/IceStorm):
