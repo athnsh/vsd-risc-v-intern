@@ -12,15 +12,18 @@
 
 ## Overview
 
-This internship project focuses on **RISC-V processor design and verification** using a systematic multi-stage validation flow (O0→O1→O2→O3→O4). The goal is to understand how high-level C programs are compiled, optimized, and executed on RISC-V architecture, and how this foundation supports subsequent hardware design stages.
+This repository documents my work during the VSD FPGA Internship, progressing from basic RISC-V software execution to FPGA development workflows and custom hardware design.
 
-### Design & Verification Flow
+The tasks cover the complete hardware-software flow, including RISC-V compilation, ISA-level debugging, FPGA environment setup, and designing a memory-mapped GPIO IP integrated into an existing RISC-V SoC.
 
-- **O0**: x86 GCC compilation (reference baseline)
-- **O1**: RISC-V C model execution and ISA verification
-- **O2**: RTL design verification (Verilog)
-- **O3**: Physical design (GDSII)
-- **O4**: Silicon tape-out and final verification
+**Key topics covered:**
+
+- RISC-V toolchain and compilation
+- Spike ISA simulation and debugging
+- FPGA environment setup
+- Verilog RTL design
+- Memory-mapped peripheral integration
+- Hardware-software co-design and simulation
 
 ---
 
@@ -36,6 +39,9 @@ Executing and debugging RISC-V binaries using the Spike ISA simulator. Includes 
 
 ### [Task 3: Environment Setup & RISC-V Reference Bring-Up](task3/README.md)
 Building and validating the complete RISC-V software-to-FPGA workflow, validating software execution using Spike, and preparing the FPGA build flow.
+
+### [Task 4: Design & Integrate a Memory-Mapped IP](task4/README.md)
+Design a simple memory-mapped peripheral, integrate it into the existing RISC-V SoC's address decoder and bus, and validate the integration through simulation. Includes 3 programs
 
 ---
 
@@ -57,6 +63,15 @@ vsd-intern/
 │   ├── README.md (Environment setup and FPGA bring-up guide)
 │   └── task3-resources/
 │       └── (Docker file, screenshots and notes)
+├── task4/
+│   ├── README.md (GPIO IP design and simulation validation guide)
+│   └── task4-resources/
+│       ├── gpio_ip.v (32-bit memory-mapped GPIO peripheral RTL)
+│       ├── bench.v (Simulation testbench and FPGA primitive stubs)
+│       ├── riscv.v (Modified RISC-V SoC with GPIO integration)
+│       ├── gpio_test.c (Firmware used to validate the GPIO IP)
+│       ├── io.h (Memory-mapped peripheral address definitions)
+│       └── (Waveform screenshots, simulation logs and implementation notes)
 └── resources/ (Reference materials currently in gitignore)
 ```
 
@@ -64,8 +79,20 @@ vsd-intern/
 
 ## Quick Links
 
-- [Task 1 README](Task1/README.md) – Full compilation guide with screenshots
-- [Task 2 README](task2/README.md) – Spike debugging workflow and LFSR analysis
-- [Task 3 README](task3/README.md) – Environment setup and FPGA bring-up guide
+- [Task 1 README](Task1/README.md) – RISC-V compilation workflow and toolchain setup with screenshots
+- [Task 2 README](task2/README.md) – Spike simulation, debugging workflow and LFSR analysis
+- [Task 3 README](task3/README.md) – FPGA environment setup and board bring-up guide
+- [Task 4 README](task4/README.md) – GPIO IP design, SoC integration and simulation validation workflow
+
 - [LFSR.c Source](task2/LFSR.c) – 32-bit pseudo-random generator implementation
-- [Task 1 Notes](Task1/task1-resources/task1-notes.md) [Task 2 Notes](task2/task2-resources/task2-notes.md) [Task 3 Notes](task3/task3-resources/task3-notes.md) – Raw debugging notes and observations
+
+- [gpio_ip.v](task4/task4-resources/gpio_ip.v) – 32-bit memory-mapped GPIO peripheral RTL
+- [bench.v](task4/task4-resources/bench.v) – Simulation testbench and FPGA primitive stubs
+- [gpio_test.c](task4/task4-resources/gpio_test.c) – Bare-metal firmware used to validate the GPIO IP
+- [riscv.v](task4/task4-resources/riscv.v) – Modified RISC-V SoC with GPIO integration
+- [io.h](task4/task4-resources/io.h) – Memory-mapped peripheral address definitions
+
+- [Task 1 Notes](Task1/task1-resources/task1-notes.md) – Raw compilation notes and observations
+- [Task 2 Notes](task2/task2-resources/task2-notes.md) – Spike debugging notes and observations
+- [Task 3 Notes](task3/task3-resources/task3-notes.md) – FPGA setup notes and observations
+- [Task 4 Notes](task4/task4-resources/task4-notes.md) – IP integration, simulation and debugging notes
