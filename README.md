@@ -14,7 +14,7 @@
 
 This repository documents my work during the VSD FPGA Internship, progressing from basic RISC-V software execution to FPGA development workflows and custom hardware design.
 
-The tasks cover the complete hardware-software flow, including RISC-V compilation, ISA-level debugging, FPGA environment setup, and designing a memory-mapped GPIO IP integrated into an existing RISC-V SoC.
+The tasks cover the complete hardware-software flow, including RISC-V compilation, ISA-level debugging, FPGA environment setup, and designing a memory-mapped GPIO IP — first as a single-register output peripheral, then extended into a full multi-register, bidirectional GPIO controller — integrated into an existing RISC-V SoC.
 
 **Key topics covered:**
 
@@ -23,6 +23,7 @@ The tasks cover the complete hardware-software flow, including RISC-V compilatio
 - FPGA environment setup
 - Verilog RTL design
 - Memory-mapped peripheral integration
+- Address-offset decoding for multi-register IPs
 - Hardware-software co-design and simulation
 
 ---
@@ -41,7 +42,10 @@ Executing and debugging RISC-V binaries using the Spike ISA simulator. Includes 
 Building and validating the complete RISC-V software-to-FPGA workflow, validating software execution using Spike, and preparing the FPGA build flow.
 
 ### [Task 4: Design & Integrate a Memory-Mapped IP](task4/README.md)
-Design a simple memory-mapped peripheral, integrate it into the existing RISC-V SoC's address decoder and bus, and validate the integration through simulation. Includes 3 programs
+Design a simple memory-mapped peripheral, integrate it into the existing RISC-V SoC's address decoder and bus, and validate the integration through simulation. Includes 3 programs.
+
+### [Task 5: Extend the GPIO IP into a Full GPIO Control Peripheral](task5/README.md)
+Extend the write-only, single-register GPIO IP from Task 4 into a three-register, bidirectional GPIO controller (`GPIO_DATA`, `GPIO_DIR`, `GPIO_READ`) using address-offset decoding behind one base address. Validates that the direction register correctly gates the readback path.
 
 ---
 
@@ -72,6 +76,14 @@ vsd-intern/
 │       ├── gpio_test.c (Firmware used to validate the GPIO IP)
 │       ├── io.h (Memory-mapped peripheral address definitions)
 │       └── (Waveform screenshots, simulation logs and implementation notes)
+├── task5/
+│   ├── README.md (GPIO Control IP extension and simulation validation guide)
+│   └── task5-resources/
+│       ├── gpio_ip.v (Extended 3-register GPIO peripheral RTL — DATA/DIR/READ)
+│       ├── riscv.v (Modified RISC-V SoC with offset-decoded GPIO integration)
+│       ├── gpio_test.c (Firmware exercising all three GPIO registers)
+│       ├── io.h (Updated peripheral address definitions for DATA/DIR/READ)
+│       └── (Waveform screenshots, simulation logs and implementation notes)
 └── resources/ (Reference materials currently in gitignore)
 ```
 
@@ -83,16 +95,23 @@ vsd-intern/
 - [Task 2 README](task2/README.md) – Spike simulation, debugging workflow and LFSR analysis
 - [Task 3 README](task3/README.md) – FPGA environment setup and board bring-up guide
 - [Task 4 README](task4/README.md) – GPIO IP design, SoC integration and simulation validation workflow
+- [Task 5 README](task5/README.md) – GPIO Control IP extension, address-offset decoding and direction-register validation
 
 - [LFSR.c Source](task2/LFSR.c) – 32-bit pseudo-random generator implementation
 
-- [gpio_ip.v](task4/task4-resources/gpio_ip.v) – 32-bit memory-mapped GPIO peripheral RTL
+- [gpio_ip.v (Task 4)](task4/task4-resources/gpio_ip.v) – 32-bit memory-mapped GPIO peripheral RTL
 - [bench.v](task4/task4-resources/bench.v) – Simulation testbench and FPGA primitive stubs
-- [gpio_test.c](task4/task4-resources/gpio_test.c) – Bare-metal firmware used to validate the GPIO IP
-- [riscv.v](task4/task4-resources/riscv.v) – Modified RISC-V SoC with GPIO integration
-- [io.h](task4/task4-resources/io.h) – Memory-mapped peripheral address definitions
+- [gpio_test.c (Task 4)](task4/task4-resources/gpio_test.c) – Bare-metal firmware used to validate the GPIO IP
+- [riscv.v (Task 4)](task4/task4-resources/riscv.v) – Modified RISC-V SoC with GPIO integration
+- [io.h (Task 4)](task4/task4-resources/io.h) – Memory-mapped peripheral address definitions
+
+- [gpio_ip.v (Task 5)](task5/task5-resources/gpio_ip.v) – Extended 3-register GPIO peripheral RTL (DATA/DIR/READ)
+- [gpio_test.c (Task 5)](task5/task5-resources/gpio_test.c) – Firmware exercising all three GPIO registers
+- [riscv.v (Task 5)](task5/task5-resources/riscv.v) – SoC with offset-decoded GPIO integration
+- [io.h (Task 5)](task5/task5-resources/io.h) – Updated peripheral address definitions for DATA/DIR/READ
 
 - [Task 1 Notes](Task1/task1-resources/task1-notes.md) – Raw compilation notes and observations
 - [Task 2 Notes](task2/task2-resources/task2-notes.md) – Spike debugging notes and observations
 - [Task 3 Notes](task3/task3-resources/task3-notes.md) – FPGA setup notes and observations
 - [Task 4 Notes](task4/task4-resources/task4-notes.md) – IP integration, simulation and debugging notes
+- [Task 5 Notes](task5/task5-resources/task5-notes.md) – GPIO Control IP extension and validation notes
