@@ -14,7 +14,7 @@
 
 This repository documents my work during the VSD FPGA Internship, progressing from basic RISC-V software execution to FPGA development workflows and custom hardware design.
 
-The tasks cover the complete hardware-software flow, including RISC-V compilation, ISA-level debugging, FPGA environment setup, and designing a memory-mapped GPIO IP — first as a single-register output peripheral, then extended into a full multi-register, bidirectional GPIO controller — integrated into an existing RISC-V SoC.
+The tasks cover the complete hardware-software flow, including RISC-V compilation, ISA-level debugging, FPGA environment setup, and designing memory-mapped peripheral IPs — starting with a GPIO output peripheral, extending it into a full multi-register bidirectional GPIO controller, and then adding a real timer peripheral integrated into the existing RISC-V SoC.
 
 **Key topics covered:**
 
@@ -24,6 +24,7 @@ The tasks cover the complete hardware-software flow, including RISC-V compilatio
 - Verilog RTL design
 - Memory-mapped peripheral integration
 - Address-offset decoding for multi-register IPs
+- Timer peripheral design and validation
 - Hardware-software co-design and simulation
 
 ---
@@ -46,6 +47,9 @@ Design a simple memory-mapped peripheral, integrate it into the existing RISC-V 
 
 ### [Task 5: Extend the GPIO IP into a Full GPIO Control Peripheral](task5/README.md)
 Extend the write-only, single-register GPIO IP from Task 4 into a three-register, bidirectional GPIO controller (`GPIO_DATA`, `GPIO_DIR`, `GPIO_READ`) using address-offset decoding behind one base address. Validates that the direction register correctly gates the readback path.
+
+### [Task 6: Timer IP - Core Contributor Task](task6/README.md)
+Design and integrate a memory-mapped timer peripheral with one-shot and periodic modes, an optional prescaler, a sticky timeout flag, and an LED-facing timeout output. Includes RTL, software validation, simulation evidence, and hardware flashing notes.
 
 ---
 
@@ -84,6 +88,21 @@ vsd-intern/
 │       ├── gpio_test.c (Firmware exercising all three GPIO registers)
 │       ├── io.h (Updated peripheral address definitions for DATA/DIR/READ)
 │       └── (Waveform screenshots, simulation logs and implementation notes)
+├── task6/
+│   ├── README.md (Timer IP core contributor write-up and validation guide)
+│   ├── ip/
+│   │   └── ap_timer_ip/
+│   │       ├── README.md (Timer IP documentation)
+│   │       ├── rtl/
+│   │       │   ├── bench.v (Simulation testbench and FPGA primitive stubs)
+│   │       │   ├── io.h (Memory-mapped timer address definitions)
+│   │       │   ├── riscv.v (Modified RISC-V SoC with timer integration)
+│   │       │   └── timer_ip.v (32-bit memory-mapped timer peripheral RTL)
+│   │       └── test/
+│   │           ├── led_test.c (Firmware used to validate the timer IP)
+│   │           ├── LED_Test01.mp4 (Hardware demo video)
+│   │           └── (Waveform screenshots, simulation logs and implementation notes)
+│   └── task6-notes.md (Raw timer implementation notes and screenshots)
 └── resources/ (Reference materials currently in gitignore)
 ```
 
@@ -96,6 +115,7 @@ vsd-intern/
 - [Task 3 README](task3/README.md) – FPGA environment setup and board bring-up guide
 - [Task 4 README](task4/README.md) – GPIO IP design, SoC integration and simulation validation workflow
 - [Task 5 README](task5/README.md) – GPIO Control IP extension, address-offset decoding and direction-register validation
+- [Task 6 README](task6/README.md) – Timer IP design, SoC integration, simulation and hardware validation
 
 - [LFSR.c Source](task2/LFSR.c) – 32-bit pseudo-random generator implementation
 
@@ -110,8 +130,15 @@ vsd-intern/
 - [riscv.v (Task 5)](task5/task5-resources/riscv.v) – SoC with offset-decoded GPIO integration
 - [io.h (Task 5)](task5/task5-resources/io.h) – Updated peripheral address definitions for DATA/DIR/READ
 
+- [Timer IP README](task6/ip/ap_timer_ip/README.md) – Timer IP overview, register map and functional description
+- [timer_ip.v](task6/ip/ap_timer_ip/rtl/timer_ip.v) – 32-bit memory-mapped timer peripheral RTL
+- [led_test.c](task6/ip/ap_timer_ip/test/led_test.c) – Bare-metal firmware used to validate the timer IP
+- [riscv.v](task6/ip/ap_timer_ip/rtl/riscv.v) – Modified RISC-V SoC with timer integration
+- [io.h](task6/ip/ap_timer_ip/rtl/io.h) – Memory-mapped timer register definitions
+
 - [Task 1 Notes](Task1/task1-resources/task1-notes.md) – Raw compilation notes and observations
 - [Task 2 Notes](task2/task2-resources/task2-notes.md) – Spike debugging notes and observations
 - [Task 3 Notes](task3/task3-resources/task3-notes.md) – FPGA setup notes and observations
 - [Task 4 Notes](task4/task4-resources/task4-notes.md) – IP integration, simulation and debugging notes
 - [Task 5 Notes](task5/task5-resources/task5-notes.md) – GPIO Control IP extension and validation notes
+- [Task 6 Notes](task6/task6-notes.md) – Timer IP implementation notes and validation screenshots
